@@ -9,8 +9,11 @@
 	<div class="card-header">Editar informacion del libro</div>
 	<div class="card-body">
 		<h4 class="card-title">Datos del libro</h4>
-		{% include "libros/form.html" %}
+		<form action="" method="post" enctype="multipart/form-data">
+			{% include "libros/form.html" %}
+			<input class="btn btn-success" type="submit" value="Editar Libro" />
+			<a class="btn btn-primary" href="{% url "libros" %}" role="button">Regresar</a>
+		</form>
 	</div>
-	<div class="card-footer text-muted"></div>
 </div>
 {% endblock contenido %}

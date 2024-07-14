@@ -1,20 +1,21 @@
-<form action="" method="post" enctype="multipart/form-data">
-	{% csrf_token %}
-	<!-- Iterar campos -->
-	{% for campo in formulario %}
-	<div class="mb-3">
-		<label for="nombre" class="form-label">{{campo.label}}:</label>
-		<input
-			type="{{ campo.field.widget.input_type}}"
-			name="{{campo.name}}"
-			id="nombre"
-			class="form-control"
-			placeholder="{{campo.label}}"
-			aria-describedby="helpId"
-		/>
-	</div>
-	<div class="col-12 hekp-text">{{campo.errors}}</div>
-	{% endfor %}
-
-	<input class="btn btn-success" type="submit" value="Agregar Libro">
-</form>
+{% csrf_token %}
+<!-- Iterar campos -->
+{% for campo in formulario %}
+<div class="mb-3">
+	<label for="nombre" class="form-label">{{campo.label}}:</label>
+	{% if campo.field.widget.input_type == 'file' and campo.value %}
+	<img src="{{MEDIA_URL}}/imagenes/{{campo.value}}" alt="Imagen Libro" width="100" />
+	<br>
+	{% endif %}
+	<input
+		type="{{ campo.field.widget.input_type}}"
+		name="{{campo.name}}"
+		id=""
+		class="form-control"
+		aria-describedby="helpId"
+		placeholder="{{campo.label}}"
+		value="{{campo.value | default:''}}"
+	/>
+</div>
+<div class="col-12 hekp-text">{{campo.errors}}</div>
+{% endfor %}
