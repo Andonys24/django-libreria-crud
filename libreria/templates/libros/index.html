@@ -28,7 +28,7 @@
 				<tr>
 					<th>{{libro.id}}</th>
 					<td>{{libro.titulo}}</td>
-					<td><img src="{{libro.imagen}}" alt="Imagen del Libro"></td>
+					<td><img src="{{libro.imagen.url}}" alt="Imagen del Libro" height="80"></td>
 					<td>{{libro.descripcion}}</td>
 					<td>
 						<a class="btn btn-warning" href="{% url "editar-libro" %}" role="button">Editar</a>
