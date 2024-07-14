@@ -1,4 +1,20 @@
 <form action="" method="post" enctype="multipart/form-data">
-	<label for="nombre" class="form-label">Nombre:</label>
-	<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" aria-describedby="helpId" />
+	{% csrf_token %}
+	<!-- Iterar campos -->
+	{% for campo in formulario %}
+	<div class="mb-3">
+		<label for="nombre" class="form-label">{{campo.label}}:</label>
+		<input
+			type="{{ campo.field.widget.input_type}}"
+			name="{{campo.name}}"
+			id="nombre"
+			class="form-control"
+			placeholder="{{campo.label}}"
+			aria-describedby="helpId"
+		/>
+	</div>
+	<div class="col-12 hekp-text">{{campo.errors}}</div>
+	{% endfor %}
+
+	<input class="btn btn-success" type="submit" value="Agregar Libro">
 </form>
